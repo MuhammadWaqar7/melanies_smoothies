@@ -19,15 +19,15 @@ from snowflake.snowpark.functions import col, when_matched
 
 cnx = st.connection('snowflake')
 session = cnx.session()
-my_dataframe = session.table("smoothies.public.fruit_options").select(col('Fruit_Name'),col('Search_on'))
+# my_dataframe = session.table("smoothies.public.fruit_options").select(col('Fruit_Name'),col('Search_on'))
 # st.dataframe(data=my_dataframe, use_container_width=True)
 # st.stop()
 my_dataframe = session.table('smoothies.public.fruit_options').select(col('FRUIT_NAME'),col('SEARCH_ON'))
 
 # Convert the Snowpark Dataframe to a Pandas Dataframe so we can use the LOC function
 pd_df=my_dataframe.to_pandas()
-st.dataframe(pd_df)
-st.stop()
+# st.dataframe(pd_df)
+# st.stop()
 Ingredients_list = st.multiselect(
     'Choose up to 5 Ingredients:',
     my_dataframe,

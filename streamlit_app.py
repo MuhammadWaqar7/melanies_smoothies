@@ -23,8 +23,6 @@ session = cnx.session()
 # st.dataframe(data=my_dataframe, use_container_width=True)
 # st.stop()
 my_dataframe = session.table('smoothies.public.fruit_options').select(col('FRUIT_NAME'),col('SEARCH_ON'))
-
-# Convert the Snowpark Dataframe to a Pandas Dataframe so we can use the LOC function
 pd_df=my_dataframe.to_pandas()
 # st.dataframe(pd_df)
 # st.stop()
@@ -57,3 +55,12 @@ if Ingredients_list:
     if time_to_insert:
         session.sql(my_insert_stmt).collect()
         st.success('Your Smoothie is ordered!', icon="✅")
+
+
+
+
+# my_dataframe = session.table('smoothies.public.fruit_options').select(col('FRUIT_NAME'),col('SEARCH_ON'))
+# pd_df=my_dataframe.to_pandas()
+
+# # ... later in the loop ...
+# search_on = pd_df.loc[pd_df['FRUIT_NAME'] == fruit_chosen, 'SEARCH_ON'].iloc[0]

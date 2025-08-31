@@ -33,16 +33,16 @@ Ingredients_list = st.multiselect(
 )
 
 if Ingredients_list:
-    Ingredients_string = ''
-    for fruit_chosen in Ingredients_list:  # Fixed variable name (capital I)
-        Ingredients_string += fruit_chosen + ' * '
-        search_on=pd_df.loc[pd_df['FRUIT_NAME'] == fruit_chosen, 'SEARCH_ON'].iloc[0]
-        st.write('The search value for ', fruit_chosen,' is ', search_on, '.')
-
-        st.subheader(fruit_chosen + " Nutrition Information")
-        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/" + search_on)
-        # fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + search_on)
-        st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
+        Ingredients_string = ''
+            for fruit_chosen in Ingredients_list:  # Fixed variable name (capital I)
+                Ingredients_string += fruit_chosen + ' * '
+                search_on=pd_df.loc[pd_df['FRUIT_NAME'] == fruit_chosen, 'SEARCH_ON'].iloc[0]
+                st.write('The search value for ', fruit_chosen,' is ', search_on, '.')
+        
+                st.subheader(fruit_chosen + " Nutrition Information")
+                smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/" + search_on)
+                # fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + search_on)
+                st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
     
     # This was incorrectly indented inside the for loop
     st.write(Ingredients_list)
